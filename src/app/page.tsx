@@ -2,12 +2,13 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import Link from "next/link";
+import { PricingTable } from "@clerk/nextjs";
 
 export default function LandingPage() {
   return (
     <main className="min-h-screen bg-gradient-dark flex flex-col">
       <Header />
-      <section className="flex-1 flex flex-col items-center justify-center text-center px-4">
+      <section className="flex-1 flex flex-col items-center justify-center text-center px-4 pt-4">
         <h1 className="text-5xl sm:text-7xl md:text-8xl font-bold text-gradient-brand-animated mb-6">
           Evently
         </h1>
@@ -40,6 +41,9 @@ export default function LandingPage() {
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-8">
           Plans & Pricing
         </h2>
+        <div style={{ maxWidth: "800px", margin: "0 auto", padding: "0 1rem" }}>
+          <PricingTable />
+        </div>
       </section>
       <Footer />
     </main>
