@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo} from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Event } from "@/types/events";
 import { useEventService, EventFilters } from "@/hooks/useEventService";
 import EventCard from "./EventCard";
@@ -31,7 +31,7 @@ export default function EventsClient() {
 
   const { getAllEvents } = useEventService();
 
-  // Fetch events
+  // Fetch events function - no useCallback needed since we'll use it differently
   const fetchEvents = async () => {
     setLoading(true);
     setError(null);
@@ -53,7 +53,7 @@ export default function EventsClient() {
     }
   };
 
-  // Initial load
+  // Set user plan based on auth
   useEffect(() => {
     if (has) {
       if (has({ plan: "platinum" })) {
@@ -62,9 +62,18 @@ export default function EventsClient() {
         setPlan("silver");
       } else if (has({ plan: "gold" })) {
         setPlan("gold");
-      } else setPlan("free");
+      } else {
+        setPlan("free");
+      }
     }
-    fetchEvents();
+  }, [has]);
+
+  // Initial load - only when userId changes, fetch events once
+  useEffect(() => {
+    if (userId) {
+      fetchEvents();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 
   // Handle filter updates
@@ -80,11 +89,12 @@ export default function EventsClient() {
   const handleTierChange = (tier: string) => {
     setSelectedTier(tier);
     const tierFilter = tier === "all" ? undefined : tier;
-    if(doesPlanCoverTier(plan, tier) || tier === "all") {
+    if (doesPlanCoverTier(plan, tier) || tier === "all") {
       updateFilters({ tier: tierFilter });
-    }else{
+    } else {
       toast.error(`Your plan does not cover ${tier} events.`, {
-        description: "Upgrade your plan in your profile under Manage Account > Billing.",
+        description:
+          "Upgrade your plan in your profile under Manage Account > Billing.",
       });
       setSelectedTier("all");
       updateFilters({ tier: undefined });

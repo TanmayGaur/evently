@@ -4,6 +4,7 @@ import { Event } from "@/types/events";
 import { Calendar, MapPin, Clock, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
+import Image from "next/image";
 
 interface EventCardProps {
   event: Event;
@@ -135,10 +136,11 @@ export default function EventCard({ event, canAccess = true }: EventCardProps) {
                   <Calendar className="w-16 h-16 text-gray-400" />
                 </div>
               )}
-              <img
+              <Image
                 src={event.image_url}
                 alt={event.title}
-                className={`w-full h-full object-cover transition-all duration-300 group-hover:scale-105 ${
+                fill
+                className={`object-cover transition-all duration-300 group-hover:scale-105 ${
                   imageLoading ? "opacity-0" : "opacity-100"
                 }`}
                 onLoad={handleImageLoad}
@@ -172,7 +174,6 @@ export default function EventCard({ event, canAccess = true }: EventCardProps) {
               {new Date(event.event_date).getDate()}
             </div>
           </div>
-
         </div>
 
         {/* Event Content */}
@@ -260,10 +261,11 @@ export default function EventCard({ event, canAccess = true }: EventCardProps) {
                       <Calendar className="w-20 h-20 text-gray-400" />
                     </div>
                   )}
-                  <img
+                  <Image
                     src={event.image_url}
                     alt={event.title}
-                    className={`w-full h-full object-cover transition-opacity duration-300 ${
+                    fill
+                    className={`object-cover transition-opacity duration-300 ${
                       imageLoading ? "opacity-0" : "opacity-100"
                     }`}
                     onLoad={handleImageLoad}
