@@ -25,6 +25,21 @@ Tier-Based Event Showcase – A responsive Next.js app where authenticated users
 - **Language**: TypeScript
 - **Deployment Ready**: Vercel optimized
 
+## 🌐 Live Demo
+
+Check out the live demo of Evently: [Evently Live Demo](https://evently-alpha-black.vercel.app/)
+
+## 👥 Demo Users
+
+Use the following test credentials to explore the platform:
+
+| **Plan**     | **Email**                              | **Password**          |
+| ------------ | -------------------------------------- | --------------------- |
+| **Free**     | freeuser+clerk_test@test.com           | `#123freeuserPass`    |
+| **Silver**   | silveruser+clerk_test@test.com         | `#123silveruserPass`  |
+| **Gold**     | golduser+clerk_test@test.com           | `#123golduserPass`    |
+| **Platinum** | platinumuser+clerk_test@test.com       | `#123platinumuserPass`|
+
 ## 🚀 Getting Started
 
 ### Prerequisites
