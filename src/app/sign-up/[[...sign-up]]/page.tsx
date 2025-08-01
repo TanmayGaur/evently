@@ -14,6 +14,7 @@ export default function SignUpPage() {
         </div>
 
         <SignUp
+          fallbackRedirectUrl="/events"
           appearance={{
             baseTheme: undefined,
             elements: {
